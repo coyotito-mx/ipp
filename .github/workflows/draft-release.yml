@@ -2,24 +2,13 @@ name: Draft Release
 
 on:
   push:
-    branches: [dev]
+    branches: [main]
     paths-ignore: ["**/CHANGELOG.md"]
   pull_request:
     types: [opened, reopened, synchronize]
-    branches: [dev]
-
-permissions:
-  contents: read
 
 jobs:
   draft:
-    permissions:
-      contents: write
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v6
-        with:
-          commitish: refs/heads/dev
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: coyotito-mx/.github/.github/workflows/release-drafter.yml@main
+    secrets:
+      PAT: ${{ secrets.GITHUB_TOKEN }}

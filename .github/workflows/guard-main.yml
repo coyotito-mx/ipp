@@ -1,0 +1,14 @@
+name: Guard main
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  dev-only:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.head_ref != 'dev' }}
+        run: |
+          echo "::error::PRs into main are only allowed from 'dev'."
+          exit 1
