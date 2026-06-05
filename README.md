@@ -29,7 +29,7 @@ $printer = Printer::connect('ipps://192.168.1.50:631/ipp/print');
 
 // What can it do? (Get-Printer-Attributes → typed view)
 $caps = $printer->capabilities();
-$caps->makeAndModel();        // "EPSON L5590 Series"
+$caps->makeAndModel();        // "Office Printer"
 $caps->isOnline();            // true
 $caps->hasMediaReady('na_legal_8.5x14in');
 $caps->supportsColor();
@@ -56,8 +56,8 @@ $job->cancel();
 use Coyotito\Ipp\Discovery\Discovery;
 
 foreach (Discovery::mdns()->discover(timeout: 5) as $printer) {
-    echo $printer->uri;   // ipp://EPSONEAC7AB.local:631/ipp/print
-    echo $printer->name;  // "EPSON L5590 Series"
+    echo $printer->uri;   // ipp://office-printer.local:631/ipp/print
+    echo $printer->name;  // "Office Printer"
 }
 
 // Always-available fallback: register by IP/host.

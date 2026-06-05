@@ -60,16 +60,16 @@ it('builds a PTR query with the unicast-response bit set', function () {
 });
 
 it('parses SRV/TXT records into a discovered printer', function () {
-    $packet = mdnsPacket('EPSON L5590._ipp._tcp.local', 'EPSONEAC7AB.local', 631, 'ipp/print');
+    $packet = mdnsPacket('Office Printer._ipp._tcp.local', 'office-printer.local', 631, 'ipp/print');
 
     $printers = MdnsDiscovery::parse($packet);
 
     expect($printers)->toHaveCount(1)
-        ->and($printers[0]->uri)->toBe('ipp://EPSONEAC7AB.local:631/ipp/print')
-        ->and($printers[0]->host)->toBe('EPSONEAC7AB.local')
+        ->and($printers[0]->uri)->toBe('ipp://office-printer.local:631/ipp/print')
+        ->and($printers[0]->host)->toBe('office-printer.local')
         ->and($printers[0]->port)->toBe(631)
         ->and($printers[0]->scheme)->toBe('ipp')
-        ->and($printers[0]->name)->toBe('EPSON L5590');
+        ->and($printers[0]->name)->toBe('Office Printer');
 });
 
 it('derives the ipps scheme from an _ipps service instance', function () {

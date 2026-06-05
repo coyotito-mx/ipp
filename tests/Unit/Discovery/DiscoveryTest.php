@@ -29,7 +29,7 @@ final class FakeRunner implements CommandRunner
 
 it('parses ippfind output into discovered printers', function () {
     $output = <<<'OUT'
-    ipp://EPSONEAC7AB.local:631/ipp/print
+    ipp://office-printer.local:631/ipp/print
     ipps://officejet.local:631/ipp/print
 
     OUT;
@@ -37,7 +37,7 @@ it('parses ippfind output into discovered printers', function () {
     $printers = (new IppFindDiscovery(new FakeRunner($output)))->discover();
 
     expect($printers)->toHaveCount(2)
-        ->and($printers[0]->host)->toBe('EPSONEAC7AB.local')
+        ->and($printers[0]->host)->toBe('office-printer.local')
         ->and($printers[0]->port)->toBe(631)
         ->and($printers[0]->scheme)->toBe('ipp')
         ->and($printers[1]->scheme)->toBe('ipps')
