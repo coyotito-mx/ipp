@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**/CHANGELOG.md"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: coyotito-mx/.github/.github/workflows/publish-release.yml@main
+    secrets: inherit

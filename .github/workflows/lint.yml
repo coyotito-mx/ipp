@@ -1,0 +1,13 @@
+name: Code style
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths-ignore: ["**/CHANGELOG.md"]
+
+jobs:
+  lint:
+    uses: coyotito-mx/.github/.github/workflows/coding-standards.yml@main
+    with:
+      fix: false
+      preset: laravel

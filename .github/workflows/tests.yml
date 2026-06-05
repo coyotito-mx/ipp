@@ -1,0 +1,16 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**/CHANGELOG.md"]
+  pull_request:
+    branches: [dev, main]
+    paths-ignore: ["**/CHANGELOG.md"]
+
+jobs:
+  tests:
+    uses: coyotito-mx/.github/.github/workflows/run-tests.yml@main
+    with:
+      php: '["8.4"]'
+      extensions: "sockets, curl"
